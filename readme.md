@@ -11,7 +11,7 @@ Here are some links you may find helpful:
 
 * [Documentation](https://github.com/holt/syringe#overview)
 * [API Reference](https://github.com/holt/syringe#api)
-* [Framework Name on GitHub](https://github.com/holt/syringe)
+* [Syringe on GitHub](https://github.com/holt/syringe)
 
 ## Implementation
 
