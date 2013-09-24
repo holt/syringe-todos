@@ -2,9 +2,6 @@
 
 > Syringe is a teeny-tiny dependency injection framework that allows you to dynamically assign data contracts to your functions and methods.
 
-> _[syringe.js - syringejs.org](http://syringejs.org)_
-
-
 ## Learning Syringe
 
 Here are some links you may find helpful:
