@@ -18,26 +18,26 @@
 
 			// Replace the "toggle all" checkbox with an updated version
 			var $elem = $(v.toggleall.render());
-			$.__ta.replaceWith($elem);
-			$.__ta = $elem;
+			$.syr.ta.replaceWith($elem);
+			$.syr.ta = $elem;
 
 			// Render the todo list and filters
-			$.__tl.html(v.todolist.render());
-			$.__ft.html(v.filters.render());
+			$.syr.tl.html(v.todolist.render());
+			$.syr.ft.html(v.filters.render());
 
 			// Show main block if there is at least one todo item
-			$.__mn.css({
+			$.syr.mn.css({
 				display: (c.todolist.getLength() !== 0) ? 'block' : 'none'
 			});
 
 			// Show the todo list if there is at least one todo item in 
 			// this filter state
-			$.__tl.css({
+			$.syr.tl.css({
 				display: (c.todolist.getLength(s.show) !== 0) ? 'block' : 'none'
 			});
 
 			// Show the filters if there is at least one todo item
-			$.__ft.css({
+			$.syr.ft.css({
 				display: (c.todolist.getLength() !== 0) ? 'block' : 'none'
 			});
 
