@@ -29,7 +29,7 @@ A simple example is the "revert" action, which is invoked if the __Esc__ key is 
     - `app.state.cache` - the cached list item title
     - `app.collections.todolist` - the todo list collection
 
-3. The ID of the `$.syr.li` (the active list item) is used to fetch the appropriate item model from `app.collections.todolist`, whose title is then reverted to that held in the state cache.
+3. The ID of the `$.syr.li` (the active list item) is used to fetch the corresponding item model from `app.collections.todolist`, whose title is then reverted to that held in the state cache.
 
 4. The `app.helpers.repaint` method executes. Again, via injection, this method has immediate access to the application views, collections, and state objects. All views are re-rendered against their associated collections and the app is updated.
 
