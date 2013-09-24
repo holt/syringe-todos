@@ -3,34 +3,39 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Syringe • TodoMVC</title>
+        <title>Syringe - Todos Example</title>
         <link rel="stylesheet" href="libs/todomvc-common/base.css">
     </head>
     <body>
         <section id="todoapp">
-            <header id="header">
+            <header id="header" data-syringe-add="hd">
                 <h1>todos</h1>
-                <input id="new-todo" type="text" placeholder="What needs to be done?">
+                <input id="new-todo" type="text" placeholder="What needs to be done?" data-syringe-add="nt">
             </header>
-            <section id="main" style="display: none;">
-                <input id="toggle-all" type="checkbox">
+            <section id="main" style="display: none;" data-syringe-add="mn">
+                <input id="toggle-all" type="checkbox" data-syringe-add="ta">
                 <label for="toggle-all">Mark all as complete</label>
-                <ul id="todo-list">
+                <ul id="todo-list" data-syringe-add="tl">
                 </ul>
             </section>
-            <footer id="footer" style="display: none;"></footer>
+            <footer id="footer" style="display: none;" data-syringe-add="ft"></footer>
         </section>
         <footer id="info">
             <p>Double-click to edit a todo</p>
             <p>Written by <a href="mailto:mike@holt.org">Michael Holt</a></p>
             <p>Todo styling courtesy of <a href="http://todomvc.com">TodoMVC</a></p>
         </footer>
-        <script src="libs/jquery/jquery-2.0.3.min.js"></script>
-        <script src="libs/underscore/underscore-min.js"></script>
+
+        <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
         <script src="libs/director/director.min.js"></script>
         <script src="libs/syringe/syringe.min.js"></script>
+        <script src="libs/syringe/syringe.mixins.js"></script>
 
         <script type="text/javascript">
+            
+            // Add internal pointers to our DOM management library and all
+            // relevant page elements
             window.Syringe.add({
 
                 // Todo list item
@@ -68,7 +73,6 @@
                 'app.templates.toggleall': _.template(' \
                     <input <% if (checked) { %>checked="checked"<% } %> type="checkbox" id="toggle-all"> \
                 ')
-
             });
         </script>
 
