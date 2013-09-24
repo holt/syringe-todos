@@ -6,7 +6,7 @@
 
 	// Add a pointer to the local context and obtain the app object from the injection
 	// container.
-	var VERSION	= '0.0.1';
+	var VERSION	= '0.0.2';
 	var self	= this;
 	var app		= self.get('app');
 
@@ -33,17 +33,15 @@
 			'app.views.toggleall'	: new app.views.ToggleAll()
 		})
 
-		// Add internal pointers to our DOM management library and all
-		// relevant page elements
-		.add({
-			'app.$'		: $,
-			'app.$.__hd'	: $('#header'),
-			'app.$.__mn'	: $('#main'),
-			'app.$.__ft'	: $('#footer'),
-			'app.$.__tl'	: $('#todo-list'),
-			'app.$.__nt'	: $('#new-todo'),
-			'app.$.__ta'	: $('#toggle-all'),
-			'app.$.__li'	: $()
+		// Add internal pointers to our DOM management library, collect
+		// all the nodes in the DOM that display a Syringe action, and
+		// create a placeholder for volatile elements
+		.dom({
+			'before': function () { this.add('app.$', $); },
+			'action': 'add',
+			'bindto': 'app.$',
+			'ns'	: 'syr',
+			'after'	: function () { this.add('app.$.syr.li', $); }
 		})
 
 		// Bind the event proxies that handle UI actions
