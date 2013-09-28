@@ -1,5 +1,5 @@
 // > http://syringejs.org
-// > syringe.mixins.js v0.0.1. Copyright (c) 2013 Michael Holt
+// > syringe.mixins.js v0.0.2. Copyright (c) 2013 Michael Holt
 // > holt.org. Distributed under the MIT License
 /* jshint forin:true, noarg:true, noempty:true, eqeqeq:true, bitwise:false, strict:true,
 undef:true, unused:true, curly:true, browser:true, indent:4, maxerr:50, laxcomma:true,
@@ -10,37 +10,37 @@ window.Syringe.mixin({
 
 		'use strict';
 
+		props = props || {};
+
+		var
+			actn	= props.action,
+			nmsp	= props.namespace,
+			proc	= props.processor,
+			full	= 'data-syringe-' + actn,
+			list, $arr;
+
+		nmsp = nmsp && (typeof nmsp === 'string') ? '.' + nmsp : '';
+		proc = (typeof proc === 'function') ? proc : function (item) {
+			return item;
+		};
+
+		list = [].slice.call(document.querySelectorAll('[' + full + ']'));
+		$arr = list.map(proc);
+
 		if (typeof props.before === 'function') {
 			props.before.call(this);
 		}
 
-		props = props || {};
+		switch (actn) {
 
-		var 
-			self	= this,
-			action	= props.action,
-			bindto	= props.bindto,
-			$	= self.get(bindto),
-			ns	= props.ns && 'string' === typeof props.ns ? '.' + props.ns : '';
-
-		// Grab all the DOM nodes that have a "data-syringe-" prefix
-		var nodelist = document.querySelectorAll('[data-syringe-' + action + ']');
-
-		switch (action) {
-		
 		case ('add' || 'register'):
-		
-			if ($) {
-				[].slice.call(nodelist).forEach(function (elem) {
-					if (elem && elem.nodeType === 1) {
-						[].slice.call(elem.attributes).forEach(function (attr) {
-							if (attr.name.indexOf('data-') === 0) {
-								self.add(bindto + ns + '.' + attr.value, $(elem));
-							}
-						});
-					}
-				});
-			}
+			this.add(list.reduce(function (p, c, i) {
+				if (c && c.nodeType === 1) {
+					p[props.bindto + nmsp + '.' 
+					+ c.getAttribute(full)] = $arr[i];
+					return p;
+				}
+			}, {}));
 			break;
 		}
 
