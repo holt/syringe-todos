@@ -17,27 +17,27 @@
 		.add('app.helpers.repaint', function ($, s, v, c) {
 
 			// Replace the "toggle all" checkbox with an updated version
-			var $elem = $(v.toggleall.render());
-			$.syr.ta.replaceWith($elem);
-			$.syr.ta = $elem;
+			var $el = $(v.toggleall.render());
+			$.todos.ta.replaceWith($el);
+			$.todos.ta = $el;
 
 			// Render the todo list and filters
-			$.syr.tl.html(v.todolist.render());
-			$.syr.ft.html(v.filters.render());
+			$.todos.tl.html(v.todolist.render());
+			$.todos.ft.html(v.filters.render());
 
 			// Show main block if there is at least one todo item
-			$.syr.mn.css({
+			$.todos.mn.css({
 				display: (c.todolist.getLength() !== 0) ? 'block' : 'none'
 			});
 
 			// Show the todo list if there is at least one todo item in 
 			// this filter state
-			$.syr.tl.css({
+			$.todos.tl.css({
 				display: (c.todolist.getLength(s.show) !== 0) ? 'block' : 'none'
 			});
 
 			// Show the filters if there is at least one todo item
-			$.syr.ft.css({
+			$.todos.ft.css({
 				display: (c.todolist.getLength() !== 0) ? 'block' : 'none'
 			});
 

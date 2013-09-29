@@ -13,7 +13,7 @@
 		// ### Todo Header Events
 
 		// Proxy for item creation
-		$.syr.hd.on('keydown', 'input', function (e) {
+		$.todos.hd.on('keydown', 'input', function (e) {
 			if (e.which === ENTER_KEY) {
 				self.exec('app.actions.create')
 				.exec('app.helpers.repaint');
@@ -21,7 +21,7 @@
 		});
 
 		// Proxy for toggle all checkbox
-		$.syr.mn.on('click', 'input:first', function () {
+		$.todos.mn.on('click', 'input:first', function () {
 			self.exec('app.actions.toggleall')
 			.exec('app.helpers.repaint');
 		});
@@ -29,27 +29,27 @@
 		// ### Todo List Events
 
 		// Proxy for item checkbox or remove button selection
-		$.syr.tl.on('click', 'input.toggle, button.destroy', function (e) {
-			self.set('app.$.syr.li', $(this).parents('li:first'))
+		$.todos.tl.on('click', 'input.toggle, button.destroy', function (e) {
+			self.set('app.$.todos.li', $(this).parents('li:first'))
 			.exec('app.actions.' + $(e.target).attr('class'))
 			.exec('app.helpers.repaint');
 		});
 
 		// Proxy for editable item change of focus
-		$.syr.tl.on('blur', 'input', function () {
+		$.todos.tl.on('blur', 'input', function () {
 			self.exec('app.actions.submit')
 			.exec('app.helpers.repaint');
 		});
 
 		// Proxy for editable item
-		$.syr.tl.on('dblclick', 'label', function () {
-			self.set('app.$.syr.li', $(this).parents('li:first'))
+		$.todos.tl.on('dblclick', 'label', function () {
+			self.set('app.$.todos.li', $(this).parents('li:first'))
 				.exec('app.actions.focus');
 		});
 
 		// Proxy for item editing and submission
-		$.syr.tl.on('keyup', 'input', function (e) {
-			self.set('app.$.syr.li', $(this).parents('li:first'));
+		$.todos.tl.on('keyup', 'input', function (e) {
+			self.set('app.$.todos.li', $(this).parents('li:first'));
 			if (e.which === ENTER_KEY) {
 				self.exec('app.actions.submit')
 				.exec('app.helpers.repaint');
@@ -64,7 +64,7 @@
 		// ### Todo Footer Events
 
 		// Proxy for clear completed todos button
-		$.syr.ft.on('click', 'button', function () {
+		$.todos.ft.on('click', 'button', function () {
 			self.exec('app.actions.clear')
 			.exec('app.helpers.repaint');
 		});

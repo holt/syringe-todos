@@ -16,7 +16,7 @@
 				$nt.val('');
 			}
 			return self;
-		}, ['app.$.syr.nt', 'app.helpers', 'app.models', 'app.collections'])
+		}, ['app.$.todos.nt', 'app.helpers', 'app.models', 'app.collections'])
 
 
 		// Update a todo: invoked by submitting the associated input field
@@ -26,7 +26,7 @@
 				c.todolist.getItemById($li.attr('id')).setTitle(val);
 			}
 			return self;
-		}, ['app.$.syr.li', 'app.helpers', 'app.state', 'app.collections'])
+		}, ['app.$.todos.li', 'app.helpers', 'app.state', 'app.collections'])
 
 
 		// Submit a todo: invoked by submitting the associated input field
@@ -40,7 +40,7 @@
 				s.editing = false;
 			}
 			return self;
-		}, ['app.$.syr.li', 'app.helpers', 'app.state', 'app.collections'])
+		}, ['app.$.todos.li', 'app.helpers', 'app.state', 'app.collections'])
 
 
 		// Focus on a todo: invoked by double-clicking an item
@@ -50,21 +50,21 @@
 			s.cache = c.todolist.getItemById($li.attr('id')).getTitle();
 			s.editing = true;
 			return self;
-		}, ['app.$.syr.li', 'app.state', 'app.collections'])
+		}, ['app.$.todos.li', 'app.state', 'app.collections'])
 
 
 		// Revert a todo: invoked by hitting ESC whilst editing
 		.add('app.actions.revert', function ($li, s, c) {
 			c.todolist.getItemById($li.attr('id')).setTitle(s.cache);
 			return self;
-		}, ['app.$.syr.li', 'app.state', 'app.collections'])
+		}, ['app.$.todos.li', 'app.state', 'app.collections'])
 
 
 		// Destroy a todo: invoked by the associated remove button
 		.add('app.actions.destroy', function ($li, c) {
 			c.todolist.removeItem(c.todolist.getIndexById($li.attr('id')));
 			return self;
-		}, ['app.$.syr.li', 'app.collections'])
+		}, ['app.$.todos.li', 'app.collections'])
 
 
 		// Toggle a todo: invoked by clicking the associated checkbox
@@ -72,14 +72,14 @@
 			var thisItem = c.todolist.getItemById($li.attr('id'));
 			thisItem.setCompleted(!thisItem.completed);
 			return self;
-		}, ['app.$.syr.li', 'app.collections'])
+		}, ['app.$.todos.li', 'app.collections'])
 
 
 		// Toggle all todos: invoked by clicking the toggle all checkbox
 		.add('app.actions.toggleall', function ($ta, c) {
 			c.todolist.setCompleted($ta.prop('checked'));
 			return self;
-		}, ['app.$.syr.ta', 'app.collections'])
+		}, ['app.$.todos.ta', 'app.collections'])
 
 
 		// Clear completed todos: invoked by clicking the clear button
