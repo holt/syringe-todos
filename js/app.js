@@ -34,22 +34,21 @@
 			'app.views.toggleall'	: new app.views.ToggleAll()
 		})
 
-		// Add internal pointers to our DOM management library and create an
-		// empty placeholder for list elements
+		// Add a pointer to our DOM management library
 		.add({
-			'app.$'		: $,
-			'app.$.syr.li'	: null
+			'app.$': $
 		})
 
-		// Use the .dom() mixin to automatically collect and jQuerify all the
-		// nodes in the DOM that have a Syringe "add" action. The processor is
-		// an iterator that allows the nodes in the NodeList to be processed - in
-		// this case jQuerified - before being added to the repository.
+		// Use the .dom() mixin to automatically collect all the nodes in the
+		// DOM that have a Syringe "add" action.
 		.dom({
-			'action'	: 'add',
-			'bindto'	: 'app.$',
-			'namespace'	: 'syr',
-			'processor'	: function (node) { return $(node); },
+			'action': 'add',
+			'bindto': 'app.$',
+
+			// The processor is an iterator that allows the nodes in the 
+			// NodeList to be processed (in this case jQuerified) before
+			// being added to the repository			
+			'processor': function (el) { return $(el); }
 		})
 
 		// Bind the event proxies that handle UI actions
