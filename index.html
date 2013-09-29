@@ -8,17 +8,18 @@
     </head>
     <body>
         <section id="todoapp">
-            <header id="header" data-syringe-add="hd">
+            <header id="header" data-syringe-add="todos.hd">
                 <h1>todos</h1>
-                <input id="new-todo" type="text" placeholder="What needs to be done?" data-syringe-add="nt">
+                <input id="new-todo" type="text" placeholder="What needs to be done?" data-syringe-add="todos.nt">
             </header>
-            <section id="main" style="display: none;" data-syringe-add="mn">
-                <input id="toggle-all" type="checkbox" data-syringe-add="ta">
+            <section id="main" style="display: none;" data-syringe-add="todos.mn">
+                <input id="toggle-all" type="checkbox" data-syringe-add="todos.ta">
                 <label for="toggle-all">Mark all as complete</label>
-                <ul id="todo-list" data-syringe-add="tl">
+                <ul id="todo-list" data-syringe-add="todos.tl">
+                    <li data-syringe-add="todos.li"></li>
                 </ul>
             </section>
-            <footer id="footer" style="display: none;" data-syringe-add="ft"></footer>
+            <footer id="footer" style="display: none;" data-syringe-add="todos.ft"></footer>
         </section>
         <footer id="info">
             <p>Double-click to edit a todo</p>
