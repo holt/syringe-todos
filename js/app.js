@@ -7,7 +7,7 @@
 	// Add a pointer to the local context and obtain the app object from the injection
 	// container.
 	var 
-		VERSION	= '0.0.3',
+		VERSION	= '0.0.4',
 		self	= this,
 		app	= self.get('app');
 
