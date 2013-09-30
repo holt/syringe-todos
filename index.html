@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en" data-framework="syringe">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Syringe - Todos Example</title>
+        <link rel="stylesheet" href="libs/todomvc-common/base.css">
+    </head>
+    <body>
+        <section id="todoapp">
+            <header id="header" data-syringe-add="todos.hd">
+                <h1>todos</h1>
+                <input id="new-todo" type="text" placeholder="What needs to be done?" data-syringe-add="todos.nt">
+            </header>
+            <section id="main" style="display: none;" data-syringe-add="todos.mn">
+                <input id="toggle-all" type="checkbox" data-syringe-add="todos.ta">
+                <label for="toggle-all">Mark all as complete</label>
+                <ul id="todo-list" data-syringe-add="todos.tl">
+                    <li data-syringe-add="todos.li"></li>
+                </ul>
+            </section>
+            <footer id="footer" style="display: none;" data-syringe-add="todos.ft"></footer>
+        </section>
+        <footer id="info">
+            <p>Double-click to edit a todo</p>
+            <p>Written by <a href="mailto:mike@holt.org">Michael Holt</a></p>
+            <p>Todo styling courtesy of <a href="http://todomvc.com">TodoMVC</a></p>
+        </footer>
+
+        <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+        <script src="lib/director/director.min.js"></script>
+        <script src="lib/syringe/syringe.min.js"></script>
+        <script src="lib/syringe/syringe.mixins.js"></script>
+
+        <script type="text/javascript">
+            
+            // Add internal pointers to our DOM management library and all
+            // relevant page elements
+            window.Syringe.add({
+
+                // Todo list item
+                'app.templates.todolist': _.template(' \
+                    <% todolist.forEach(function (item, idx, list) { %> \
+                    <li id="<%= item.id %>" <% if(item.completed) { %>class="completed"<% } %>> \
+                        <div class="view"> \
+                            <input type="checkbox" class="toggle" <% if(item.completed) { %> checked="checked" <% } %>/> \
+                            <label><%= item.title %></label> \
+                            <button class="destroy"></button> \
+                        </div> \
+                        <input class="edit" value="<%= item.title %>"> \
+                    </li> \
+                <% }); %>'),
+
+                // Filter blocks for "show" state
+                'app.templates.filters': _.template(' \
+                    <span id="todo-count"><strong><%= active %></strong> item<% if(active !== 1){ %>s<% } %> left</span> \
+                    <ul id="filters"> \
+                        <li data-show="all"> \
+                            <a <% if (state.show === "all") { %>class="selected"<% } %> href="#/">All</a> \
+                        </li> \
+                        <li data-show="active"> \
+                            <a <% if (state.show === "active") { %>class="selected"<% } %> href="#/active">Active</a> \
+                        </li> \
+                        <li data-show="completed"> \
+                            <a <% if (state.show === "completed") { %>class="selected"<% } %> href="#/completed">Completed</a> \
+                        </li> \
+                    </ul> \
+                    <% if (completed !== 0) { %> \
+                    <button id="clear-completed">Clear completed (<%= completed %>)</button> \
+                <% } %>'),
+
+                // Checkbox for "toggle-all"
+                'app.templates.toggleall': _.template(' \
+                    <input <% if (checked) { %>checked="checked"<% } %> type="checkbox" id="toggle-all"> \
+                ')
+            });
+        </script>
+
+        <script src="js/models/todo.js"></script>        
+        <script src="js/collections/todolist.js"></script>
+        <script src="js/views/todolist.js"></script>
+        <script src="js/views/filters.js"></script>
+        <script src="js/views/toggleall.js"></script>
+        <script src="js/controllers/state.js"></script>
+        <script src="js/controllers/routing.js"></script>
+        <script src="js/controllers/proxies.js"></script>
+        <script src="js/controllers/actions.js"></script>
+        <script src="js/controllers/helpers.js"></script>
+        <script src="js/app.js"></script>
+    </body>
+</html>
