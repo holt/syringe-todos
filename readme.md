@@ -39,7 +39,7 @@ In the above example, the only point at which any data is passed directly is whe
 
 ## Demonstration
 
-[Click here to view the Syringe Todos app](http://goo.gl/KFGFQf).
+[Click here to view the Syringe Todos app](http://holt.github.io/syringe-todos).
 
 ## License
 
