@@ -248,6 +248,7 @@ label[for='toggle-all'] {
 	-ms-transition: color 0.4s;
 	-o-transition: color 0.4s;
 	transition: color 0.4s;
+	word-wrap: break-word;
 }
 
 #todo-list li.completed label {
